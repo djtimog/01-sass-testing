@@ -1,0 +1,105 @@
+$bgcolor: lightblue;
+$textcolor: darkblue;
+$fontsize: 18px;
+$newtextcolor: red;
+$myFont: Helvetica, sans-serif;
+$myColor: red;
+$myFontSize: 18px;
+$myWidth: 680px;
+@mixin important-text {
+  color: red;
+  font-size: 25px;
+  font-weight: bold;
+  border: 1px solid blue;
+}
+
+/* Use the variables */
+.first-class {
+  background-color: $bgcolor;
+  color: $textcolor;
+  font: {
+    family: Helvetica, sans-serif;
+    size: 18px;
+    weight: bold;
+  }
+
+  text: {
+    align: center;
+    transform: lowercase;
+    overflow: hidden;
+  }
+  .first-class-child {
+    color: $newtextcolor;
+  }
+  ul {
+    .list-header {
+      font-weight: 700;
+      font-size: larger;
+    }
+  }
+}
+/* define variables for the primary colors */
+$primary_1: #a2b9bc;
+$primary_2: #b2ad7f;
+$primary_3: #878f99;
+$note: #c5bd6f;
+/* use the variables */
+.main-header {
+  background-color: $primary_1;
+}
+
+.menu-left {
+  background-color: $primary_2;
+}
+
+.menu-right {
+  background-color: $primary_3;
+}
+.note {
+  background-color: $note;
+  margin: 3%;
+  padding: 3%;
+}
+.danger {
+  @include important-text;
+  background-color: green;
+}
+/* Define mixin with two arguments */
+@mixin bordered($color, $width) {
+  border: $width solid $color;
+}
+
+.myArticle {
+  @include bordered(blue, 1px); // Call mixin with two values
+}
+
+.myNotes {
+  @include bordered(red, 2px); // Call mixin with two values
+}
+@mixin transform($property) {
+  -webkit-transform: $property;
+  -ms-transform: $property;
+  transform: $property;
+}
+
+.myBox {
+  @include transform(rotate(20deg));
+}
+.button-basic  {
+  border: none;
+  padding: 15px 30px;
+  text-align: center;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.button-report  {
+  @extend .button-basic;
+  background-color: red;
+}
+
+.button-submit  {
+  @extend .button-basic;
+  background-color: green;
+  color: white;
+}
